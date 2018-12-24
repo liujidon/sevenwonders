@@ -10,6 +10,11 @@ public class ManufacturedGood extends Resource {
 
   private TYPE type;
 
+  public ManufacturedGood(TYPE type) {
+    super(type.toString());
+    this.type = type;
+  }
+
   public ManufacturedGood(String name, TYPE type) {
     super(name);
     this.type = type;

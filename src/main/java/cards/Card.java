@@ -2,19 +2,20 @@ package cards;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import resources.Age;
 import resources.Resource;
 
 public abstract class Card {
   private String name;
   private Age age;
-  private List<Resource> cost = new ArrayList<Resource>();
+  private List<Resource> costs = new ArrayList<Resource>();
   private List<Resource> production = new ArrayList<Resource>();
 
-  public Card(String name, Age age, List<Resource> cost, List<Resource> production) {
+  public Card(String name, Age age, List<Resource> costs, List<Resource> production) {
     this.name = name;
     this.age = age;
-    this.cost = cost;
+    this.costs = costs;
     this.production = production;
   }
 
@@ -26,17 +27,15 @@ public abstract class Card {
     return age;
   };
 
-  public List<Resource> getCost() {
-    return cost;
+  public List<Resource> getCosts() {
+    return costs;
   };
 
   public List<Resource> getProduction() {
     return production;
   }
 
-  public boolean canBuild(List<Resource> wonderProduction) {
-
-    // TODO
+  public boolean canBuild(Set<Resource> resources) {
     return true;
   };
 }

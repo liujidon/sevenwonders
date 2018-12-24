@@ -1,12 +1,11 @@
 package wonders;
 
-import java.util.List;
-import resources.Resource;
+import resources.ManufacturedGood;
+import resources.ManufacturedGood.TYPE;
 
 public class Alexandria extends City {
 
-  public Alexandria(String name, Resource natural, List<Wonder> wonders) {
-    super(name, natural, wonders);
-    // TODO Auto-generated constructor stub
+  public Alexandria() {
+    super("Alexandria", new ManufacturedGood(TYPE.Glass), null);
   }
 }
