@@ -2,16 +2,20 @@ package resources;
 
 public class Science extends Resource {
 
-  public static enum Type {
+  public static enum TYPE {
     Gear,
     Tablet,
     Ruler
   }
 
-  private Type type;
+  private TYPE type;
 
-  public Science(String name, Type type) {
+  public Science(String name, TYPE type) {
     super(name);
     this.type = type;
+  }
+
+  public TYPE getType() {
+    return type;
   }
 }

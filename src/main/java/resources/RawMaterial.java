@@ -15,4 +15,8 @@ public class RawMaterial extends Resource {
     super(name);
     this.type = type;
   }
+
+  public TYPE getType() {
+    return type;
+  }
 }
