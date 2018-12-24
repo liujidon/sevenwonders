@@ -4,8 +4,8 @@ public class WarPoint extends Resource {
 
   private float value;
 
-  public WarPoint(String name, float value) {
-    super(name);
+  public WarPoint(float value) {
+    super(String.format("Shield:%.2f", value));
     this.value = value;
   }
 

@@ -10,8 +10,8 @@ public class Science extends Resource {
 
   private SType type;
 
-  public Science(String name, SType type) {
-    super(name);
+  public Science(SType type) {
+    super(type.name());
     this.type = type;
   }
 
