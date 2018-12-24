@@ -1,10 +1,10 @@
 package resources;
 
-public class Coin extends Resource {
+public class WarPoint extends Resource {
 
   private float value;
 
-  public Coin(String name, float value) {
+  public WarPoint(String name, float value) {
     super(name);
     this.value = value;
   }

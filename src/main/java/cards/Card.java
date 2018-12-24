@@ -34,7 +34,7 @@ public abstract class Card {
     return production;
   }
 
-  public boolean canBuild() {
+  public boolean canBuild(List<Resource> wonderProduction) {
 
     // TODO
     return true;

@@ -2,6 +2,10 @@ package resources;
 
 public class Age extends Resource {
 
+  public Age(String name) {
+    super(name);
+  }
+
   public static enum AGE {
     I,
     II,
