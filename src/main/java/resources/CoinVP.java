@@ -57,4 +57,9 @@ public class CoinVP extends Resource {
   public VictoryPoint getVP(Player player) {
     return new VictoryPoint(0);
   }
+
+  /** Can not be added */
+  public boolean add(Resource other) {
+    return false;
+  }
 }

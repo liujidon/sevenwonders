@@ -2,6 +2,7 @@ package game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import cards.Card;
 import resources.Resource;
 import wonders.City;
@@ -33,5 +34,16 @@ public class Player {
 
   public City getCity() {
     return city;
+  }
+
+  public void simplifyResources() {
+    List<Resource> shortResources = new ArrayList<Resource>();
+    for (Resource r : resources) {
+      ListIterator<Resource> iter = shortResources.listIterator();
+      while (iter.hasNext()) {
+        Resource nr = iter.next();
+        if (!nr.add(r)) iter.add(r);
+      }
+    }
   }
 }

@@ -2,7 +2,6 @@ package cards;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import resources.Age;
 import resources.Resource;
 
@@ -34,8 +33,4 @@ public abstract class Card {
   public List<Resource> getProduction() {
     return production;
   }
-
-  public boolean canBuild(Set<Resource> resources) {
-    return true;
-  };
 }

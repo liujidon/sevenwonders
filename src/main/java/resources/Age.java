@@ -2,8 +2,9 @@ package resources;
 
 public class Age extends Resource {
 
-  public Age(String name) {
-    super(name);
+  public Age(AGE age) {
+    super(age.toString());
+    this.age = age;
   }
 
   public static enum AGE {

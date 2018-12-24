@@ -3,7 +3,7 @@ package resources;
 public abstract class Resource {
 
   private String name;
-  private float value;
+  protected float value;
 
   public Resource(String name) {
     this.name = name;
@@ -27,5 +27,13 @@ public abstract class Resource {
 
   public boolean isGreaterEqual(Resource other) {
     return this.getValue() >= other.getValue();
+  }
+
+  public boolean add(Resource other) {
+    if (this.getClass().equals(other.getClass())) {
+      value += other.value;
+      return true;
+    }
+    return false;
   }
 }

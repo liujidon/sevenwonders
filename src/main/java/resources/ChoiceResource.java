@@ -19,4 +19,9 @@ public class ChoiceResource extends Resource {
   public Set<Resource> getResources() {
     return resource;
   }
+
+  /** Can not be added */
+  public boolean add(Resource other) {
+    return false;
+  }
 }
