@@ -4,8 +4,8 @@ public class Coin extends Resource {
 
   private float value;
 
-  public Coin(String name, float value) {
-    super(name);
+  public Coin(float value) {
+    super(String.format("Coin:%.2f", value));
     this.value = value;
   }
 

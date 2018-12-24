@@ -4,8 +4,8 @@ public class VictoryPoint extends Resource {
 
   private float value;
 
-  public VictoryPoint(String name, float value) {
-    super(name);
+  public VictoryPoint(float value) {
+    super(String.format("VP:%.2f", value));
     this.value = value;
   }
 
