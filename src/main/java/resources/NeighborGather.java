@@ -20,12 +20,10 @@ public class NeighborGather extends Resource {
     WAR_DEFEAT_VP, // 1 victory point for each defeat token present in the neighboring cities
   }
 
-  private Player player;
   private TYPE type;
 
-  public NeighborGather(String name, TYPE type, Player player) {
+  public NeighborGather(String name, TYPE type) {
     super(name);
-    this.player = player;
     this.type = type;
   }
 
@@ -34,7 +32,7 @@ public class NeighborGather extends Resource {
   }
 
   // Can generate Coin or VP
-  public Resource getResource() {
+  public Resource getResource(Player player) {
     return null;
   }
 }
