@@ -4,9 +4,9 @@ import game.Player;
 
 public class NeighborGather extends Resource {
 
-  public static enum TYPE {
-    RAW_COIN, // 1 coin per brown card built in the player’s city AND in the two neighboring cities
-    MANUFACTURED_COIN, // 2 coins per gray card built in the player’s city AND in the two
+  public enum TYPE {
+    RAW_COIN, // 1 coin per brown card built in the playerï¿½s city AND in the two neighboring cities
+    MANUFACTURED_COIN, // 2 coins per gray card built in the playerï¿½s city AND in the two
     // neighboring cities
     RED_VP, // 1 victory point for each red card present in both neighboring cities
     BLUE_VP,
@@ -34,5 +34,9 @@ public class NeighborGather extends Resource {
   // Can generate Coin or VP
   public Resource getResource(Player player) {
     return null;
+  }
+
+  public boolean add(Resource other) {
+    return false;
   }
 }

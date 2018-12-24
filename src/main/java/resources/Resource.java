@@ -3,10 +3,11 @@ package resources;
 public abstract class Resource {
 
   private String name;
-  protected float value;
+  private float value;
 
   public Resource(String name) {
     this.name = name;
+    this.value = 1;
   }
 
   public String getName() {

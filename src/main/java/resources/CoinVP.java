@@ -10,7 +10,7 @@ import game.Player;
  */
 public class CoinVP extends Resource {
 
-  public static enum TYPE {
+  public enum VPType {
     /**
      * 3 coins per Wonder stage constructed in its home city at the time it comes into play (3, 6, 9
      * or 12 coins). At the end of the game, the card is worth 1 victory point per Wonder stage
@@ -19,35 +19,35 @@ public class CoinVP extends Resource {
     WONDER,
 
     /**
-     * s 1 coin per brown card present in a player’s city when it is played. At the end of the game,
-     * the card is worth 1 victory point for each brown card present in the player’s city
+     * s 1 coin per brown card present in a playerï¿½s city when it is played. At the end of the game,
+     * the card is worth 1 victory point for each brown card present in the player's city
      */
     RAW_MATERIAL,
 
     /**
-     * 2 coins for each gray card present in the player’s city when it comes into play. At the end
-     * of the game, the card is worth 2 victory points for each gray card present in the player’s
+     * 2 coins for each gray card present in the playerï¿½s city when it comes into play. At the end
+     * of the game, the card is worth 2 victory points for each gray card present in the player's
      * city
      */
     MANUFACTURED_GOOD,
 
     /**
-     * s 1 coin per yellow card in the player’s city, itself included, when it is played. At the end
-     * of the game, the card is worth 1 victory point for each yellow card present in a player’s
+     * s 1 coin per yellow card in the playerï¿½s city, itself included, when it is played. At the end
+     * of the game, the card is worth 1 victory point for each yellow card present in a player's
      * city
      */
     COMMERCE
   }
 
-  private TYPE type;
+  private VPType VPType;
 
-  public CoinVP(String name, TYPE type) {
+  public CoinVP(String name, VPType VPType) {
     super(name);
-    this.type = type;
+    this.VPType = VPType;
   }
 
-  public TYPE getType() {
-    return type;
+  public VPType getVPType() {
+    return VPType;
   }
 
   public Coin getCoin(Player player) {
@@ -58,7 +58,9 @@ public class CoinVP extends Resource {
     return new VictoryPoint(0);
   }
 
-  /** Can not be added */
+  /**
+   * Can not be added
+   */
   public boolean add(Resource other) {
     return false;
   }

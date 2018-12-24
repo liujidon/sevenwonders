@@ -14,4 +14,8 @@ public class TechTree extends Resource {
   public Set<Resource> getChildren() {
     return children;
   }
+
+  public boolean add(Resource other) {
+    return false;
+  }
 }
