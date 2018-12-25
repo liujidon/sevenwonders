@@ -1,6 +1,9 @@
 package game;
 
 import cards.Card;
+import cards.Card.Action;
+import engine.Engine;
+import engine.RandomEngine;
 import java.util.ArrayList;
 import java.util.List;
 import resources.Coin;
@@ -14,23 +17,59 @@ public class Player {
   /**
    * cards already selected previously
    */
-  private List<Card> cards;
+  private List<Card> cards = new ArrayList<>();
 
   /**
    * cards to chose from this turn
    */
-  private List<Card> hand;
+  private List<Card> hand = new ArrayList<>();
 
+  /**
+   * cards passed by adjacent player, to be moved to hand
+   */
+  private List<Card> tempHand = new ArrayList<>();
 
   private City city;
   private List<Resource> resources = new ArrayList<>();
+
+  /**
+   * Other players adjacent to this player
+   */
   private Player leftPlayer, rightPlayer;
+
+  private Engine engine;
 
   public Player(String name, City city) {
     this.name = name;
     this.city = city;
+    this.engine = new RandomEngine();
     resources.add(city.getNaturalResource());
     resources.add(new Coin(3));
+  }
+
+  public void makeMove() {
+    Card card = engine.selectBestCard(this);
+    hand.remove(card);
+    if (card.getAction().equals(Action.Discard)) {
+      discardCard(card);
+    } else if (card.getAction().equals(Action.Play)) {
+      buildCard(card);
+    } else if (card.getAction().equals(Action.Build)) {
+      buildWonder(card);
+    }
+  }
+
+  public void passHandLeft() {
+    leftPlayer.setTempHand(hand);
+  }
+
+  public void passHandRight() {
+    rightPlayer.setTempHand(hand);
+  }
+
+  public void moveToHand() {
+    hand = tempHand;
+    tempHand = new ArrayList<>();
   }
 
   public String getName() {
@@ -58,7 +97,6 @@ public class Player {
    */
   public void buildWonder(Card c) {
     cards.add(c);
-    c.discard();
     city.buildNextWonder();
   }
 
@@ -67,7 +105,6 @@ public class Player {
    */
   public void discardCard(Card c) {
     cards.add(c);
-    c.discard();
     resources.add(new Coin(3));
   }
 
@@ -75,4 +112,39 @@ public class Player {
     this.hand = nextHand;
   }
 
+  public void addHand(Card card) {
+    hand.add(card);
+  }
+
+  public List<Card> getHand() {
+    return hand;
+  }
+
+  public List<Card> getTempHand() {
+    return tempHand;
+  }
+
+  public void setTempHand(List<Card> tempHand) {
+    this.tempHand = tempHand;
+  }
+
+  public List<Resource> getResources() {
+    return resources;
+  }
+
+  public Player getLeftPlayer() {
+    return leftPlayer;
+  }
+
+  public void setLeftPlayer(Player leftPlayer) {
+    this.leftPlayer = leftPlayer;
+  }
+
+  public Player getRightPlayer() {
+    return rightPlayer;
+  }
+
+  public void setRightPlayer(Player rightPlayer) {
+    this.rightPlayer = rightPlayer;
+  }
 }

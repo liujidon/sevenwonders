@@ -35,14 +35,23 @@ public class Deck {
     Collections.shuffle(round3, new Random(seed));
   }
 
+  public boolean canDraw(Age age) {
+    if (age.equals(Age.I)) {
+      return !round1.isEmpty();
+    } else if (age.equals(Age.II)) {
+      return !round2.isEmpty();
+    } else if (age.equals(Age.III)) {
+      return !round3.isEmpty();
+    }
+    return false;
+  }
+
   public Card draw(Age age) {
     if (age.equals(Age.I)) {
       return round1.pop();
-    }
-    if (age.equals(Age.II)) {
+    } else if (age.equals(Age.II)) {
       return round2.pop();
-    }
-    if (age.equals(Age.III)) {
+    } else if (age.equals(Age.III)) {
       return round3.pop();
     }
     return null;

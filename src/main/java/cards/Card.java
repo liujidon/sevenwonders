@@ -11,17 +11,26 @@ public abstract class Card {
     III
   }
 
+  public enum Action {
+    None,
+    Play,
+    Discard,
+    Build
+  }
+
   private String name;
   private Age age;
   private List<Resource> costs;
   private List<Resource> production;
   private boolean discarded = false;
+  private Action action;
 
   public Card(String name, Age age, List<Resource> costs, List<Resource> production) {
     this.name = name;
     this.age = age;
     this.costs = costs;
     this.production = production;
+    action = Action.None;
   }
 
   public String name() {
@@ -40,11 +49,23 @@ public abstract class Card {
     return production;
   }
 
+  public void setAction(Action action) {
+    this.action = action;
+    if (action.equals(Action.Discard) ||
+        action.equals(Action.Build)) {
+      discard();
+    }
+  }
+
+  public Action getAction() {
+    return action;
+  }
+
   public boolean isDiscarded() {
     return discarded;
   }
 
-  public void discard() {
+  private void discard() {
     discarded = true;
   }
 }
