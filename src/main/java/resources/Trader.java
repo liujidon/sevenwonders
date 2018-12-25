@@ -8,14 +8,14 @@ public class Trader extends Resource {
      * purchases raw materials from the neighboring city indicated by the arrow for 1 coin instead
      * of 2.
      */
-    RAW_LEFT,
-    RAW_RIGHT,
+    RawLeft,
+    RawRight,
 
     /**
      * from the turn following the one in which this structure was built, the player pays the
      * manufactured goods bought from his or her neighbors 1 coin instead of 2
      */
-    MANUFACTURED_BOTH
+    ManufaturedBoth
   }
 
   private TType type;

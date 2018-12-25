@@ -1,10 +1,15 @@
 package cards;
 
 import java.util.List;
-import resources.Age;
 import resources.Resource;
 
 public abstract class Card {
+
+  public enum Age {
+    I,
+    II,
+    III
+  }
 
   private String name;
   private Age age;

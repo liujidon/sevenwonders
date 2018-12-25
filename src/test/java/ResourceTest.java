@@ -28,17 +28,17 @@ public class ResourceTest {
   @Test
   public void checkComboCanBuild() {
     List<Resource> resources = new ArrayList<>();
-    resources.add(new ChoiceResource("Test", ImmutableSet.of(
+    resources.add(new ChoiceResource(ImmutableSet.of(
         new RawMaterial(RType.Lumber, 1),
         new RawMaterial(RType.Clay, 1),
         new RawMaterial(RType.Ore, 1),
         new RawMaterial(RType.Stone, 1)
     )));
-    resources.add(new ChoiceResource("Test1", ImmutableSet.of(
+    resources.add(new ChoiceResource(ImmutableSet.of(
         new RawMaterial(RType.Lumber, 1),
         new RawMaterial(RType.Stone, 1)
     )));
-    resources.add(new ChoiceResource("Test1", ImmutableSet.of(
+    resources.add(new ChoiceResource(ImmutableSet.of(
         new RawMaterial(RType.Lumber, 1),
         new RawMaterial(RType.Stone, 1)
     )));
@@ -110,7 +110,7 @@ public class ResourceTest {
     resources.add(new VictoryPoint(2));
     resources.add(new ManufacturedGood(MType.Papyrus));
     resources.add(new ManufacturedGood(MType.Loom));
-    resources.add(new ChoiceResource("Test",
+    resources.add(new ChoiceResource(
         ImmutableSet.of(new RawMaterial(RType.Lumber), new RawMaterial(RType.Clay)
         )));
     resources.add(new Coin(2));

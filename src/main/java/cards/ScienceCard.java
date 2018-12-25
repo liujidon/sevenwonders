@@ -1,7 +1,6 @@
 package cards;
 
 import java.util.List;
-import resources.Age;
 import resources.Resource;
 
 public class ScienceCard extends Card {

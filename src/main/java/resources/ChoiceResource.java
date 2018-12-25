@@ -11,8 +11,8 @@ public class ChoiceResource extends Resource {
 
   private Set<Resource> resource;
 
-  public ChoiceResource(String name, Set<Resource> resource) {
-    super(name);
+  public ChoiceResource(Set<Resource> resource) {
+    super(resource.toString());
     this.resource = resource;
   }
 
@@ -28,6 +28,6 @@ public class ChoiceResource extends Resource {
   }
 
   public ChoiceResource copy() {
-    return new ChoiceResource(getName(), resource);
+    return new ChoiceResource(resource);
   }
 }

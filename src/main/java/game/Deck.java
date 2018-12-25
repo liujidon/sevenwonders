@@ -1,12 +1,12 @@
 package game;
 
 import cards.Card;
+import cards.Card.Age;
+import definitions.CardList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import resources.Age;
-import resources.Age.AGE;
 
 public class Deck {
 
@@ -14,13 +14,14 @@ public class Deck {
   LinkedList<Card> round2 = new LinkedList<>();
   LinkedList<Card> round3 = new LinkedList<>();
 
-  public Deck(List<Card> cards) {
+  public Deck(int players) {
+    List<Card> cards = CardList.getCards(players);
     for (Card card : cards) {
-      if (card.age().getAge().equals(AGE.I)) {
+      if (card.age().equals(Age.I)) {
         round1.add(card);
-      } else if (card.age().getAge().equals(AGE.II)) {
+      } else if (card.age().equals(Age.II)) {
         round2.add(card);
-      } else if (card.age().getAge().equals(AGE.III)) {
+      } else if (card.age().equals(Age.III)) {
         round3.add(card);
       }
     }
@@ -35,15 +36,21 @@ public class Deck {
   }
 
   public Card draw(Age age) {
-    if (age.getAge().equals(AGE.I)) {
+    if (age.equals(Age.I)) {
       return round1.pop();
     }
-    if (age.getAge().equals(AGE.II)) {
+    if (age.equals(Age.II)) {
       return round2.pop();
     }
-    if (age.getAge().equals(AGE.III)) {
+    if (age.equals(Age.III)) {
       return round3.pop();
     }
     return null;
+  }
+
+  public void clear() {
+    round1.clear();
+    round2.clear();
+    round3.clear();
   }
 }

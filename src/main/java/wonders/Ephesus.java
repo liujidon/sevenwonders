@@ -2,18 +2,16 @@ package wonders;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import java.util.List;
 import resources.Coin;
 import resources.ManufacturedGood;
 import resources.ManufacturedGood.MType;
 import resources.RawMaterial;
 import resources.RawMaterial.RType;
-import resources.Resource;
 import resources.VictoryPoint;
 
 public class Ephesus extends City {
 
-  public Ephesus(String name, Resource natural, List<Wonder> wonders) {
+  public Ephesus() {
     super("Ephesus", new ManufacturedGood(MType.Papyrus),
         ImmutableList.of(
             new Wonder("Wonder 1",
