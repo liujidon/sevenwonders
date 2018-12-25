@@ -19,20 +19,20 @@ public class CoinVP extends Resource {
     WONDER,
 
     /**
-     * s 1 coin per brown card present in a player�s city when it is played. At the end of the game,
+     * 1 coin per brown card present in a player's city when it is played. At the end of the game,
      * the card is worth 1 victory point for each brown card present in the player's city
      */
     RAW_MATERIAL,
 
     /**
-     * 2 coins for each gray card present in the player�s city when it comes into play. At the end
+     * 2 coins for each gray card present in the player's city when it comes into play. At the end
      * of the game, the card is worth 2 victory points for each gray card present in the player's
      * city
      */
     MANUFACTURED_GOOD,
 
     /**
-     * s 1 coin per yellow card in the player�s city, itself included, when it is played. At the end
+     * s 1 coin per yellow card in the player's city, itself included, when it is played. At the end
      * of the game, the card is worth 1 victory point for each yellow card present in a player's
      * city
      */
