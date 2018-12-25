@@ -26,6 +26,48 @@ public class ResourceTest {
   final static Logger logger = Logger.getLogger(ResourceTest.class);
 
   @Test
+  public void checkComboCanBuild() {
+    List<Resource> resources = new ArrayList<>();
+    resources.add(new ChoiceResource("Test", ImmutableSet.of(
+        new RawMaterial(RType.Lumber, 1),
+        new RawMaterial(RType.Clay, 1),
+        new RawMaterial(RType.Ore, 1),
+        new RawMaterial(RType.Stone, 1)
+    )));
+    resources.add(new ChoiceResource("Test1", ImmutableSet.of(
+        new RawMaterial(RType.Lumber, 1),
+        new RawMaterial(RType.Stone, 1)
+    )));
+    resources.add(new ChoiceResource("Test1", ImmutableSet.of(
+        new RawMaterial(RType.Lumber, 1),
+        new RawMaterial(RType.Stone, 1)
+    )));
+    resources.add(new ManufacturedGood(MType.Papyrus));
+    resources.add(new RawMaterial(RType.Ore, 2));
+    resources.add(new RawMaterial(RType.Stone, 2));
+
+    List<Resource> missing = ResourceEval.canBuild(ImmutableList.of(
+        new RawMaterial(RType.Stone, 3),
+        new RawMaterial(RType.Ore, 3)), resources);
+    assertTrue(missing.isEmpty());
+
+    missing = ResourceEval.canBuild(ImmutableList.of(
+        new RawMaterial(RType.Stone, 3),
+        new RawMaterial(RType.Clay, 1),
+        new RawMaterial(RType.Lumber, 1),
+        new RawMaterial(RType.Ore, 2)), resources);
+    assertTrue(missing.isEmpty());
+
+    missing = ResourceEval.canBuild(ImmutableList.of(
+        new RawMaterial(RType.Stone, 3),
+        new RawMaterial(RType.Lumber, 2),
+        new RawMaterial(RType.Clay, 1),
+        new RawMaterial(RType.Ore, 2)), resources);
+    assertFalse(missing.isEmpty());
+    logger.info("Missing: " + missing);
+  }
+
+  @Test
   public void checkCanBuild() {
     List<Resource> resources = new ArrayList<>();
     resources.add(new Coin(1));
@@ -95,6 +137,8 @@ public class ResourceTest {
     Resource gear = ResourceEval.getResource(resources, new Science(SType.Gear));
     assertTrue("got gear", gear.isSameType(new Science(SType.Gear)));
 
+    List<Science> sciences = ResourceEval.getResourceByClass(resources, Science.class);
+    assertTrue("Len == 4", sciences.size() == 4);
   }
 
   @Test
