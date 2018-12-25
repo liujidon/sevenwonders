@@ -18,15 +18,15 @@ public class Trader extends Resource {
     MANUFACTURED_BOTH
   }
 
-  private TType TType;
+  private TType type;
 
-  public Trader(String name, TType TType) {
-    super(name);
-    this.TType = TType;
+  public Trader(TType type) {
+    super(type.name());
+    this.type = type;
   }
 
   public TType getTType() {
-    return TType;
+    return type;
   }
 
   public boolean add(Resource other) {

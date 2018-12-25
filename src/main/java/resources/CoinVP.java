@@ -39,15 +39,15 @@ public class CoinVP extends Resource {
     COMMERCE
   }
 
-  private VPType VPType;
+  private VPType type;
 
-  public CoinVP(String name, VPType VPType) {
-    super(name);
-    this.VPType = VPType;
+  public CoinVP(VPType type) {
+    super(type.name());
+    this.type = type;
   }
 
   public VPType getVPType() {
-    return VPType;
+    return type;
   }
 
   public Coin getCoin(Player player) {
@@ -63,5 +63,11 @@ public class CoinVP extends Resource {
    */
   public boolean add(Resource other) {
     return false;
+  }
+
+  public boolean isSameType(Resource other) {
+    return super.isSameType(other) &&
+        other instanceof CoinVP &&
+        ((CoinVP) other).getVPType().equals(this.type);
   }
 }

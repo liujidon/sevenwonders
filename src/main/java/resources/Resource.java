@@ -10,12 +10,21 @@ public abstract class Resource {
     this.value = 1;
   }
 
+  public Resource(String name, float value) {
+    this.name = name;
+    this.value = value;
+  }
+
   public String getName() {
     return name;
   }
 
   public float getValue() {
     return value;
+  }
+
+  public int getIntValue() {
+    return (int) value;
   }
 
   public void setValue(float value) {
@@ -30,8 +39,12 @@ public abstract class Resource {
     return this.getValue() >= other.getValue();
   }
 
+  public boolean isSameType(Resource other) {
+    return other != null && this.getClass().equals(other.getClass());
+  }
+
   public boolean add(Resource other) {
-    if (this.getClass().equals(other.getClass())) {
+    if (isSameType(other)) {
       value += other.value;
       return true;
     }

@@ -22,20 +22,13 @@ public class RawMaterial extends Resource {
     this.setValue(value);
   }
 
-  public RawMaterial(String name, RType type) {
-    super(name);
-    this.type = type;
-  }
-
   public RType getRType() {
     return type;
   }
 
-  public boolean add(Resource other) {
-    if (other instanceof RawMaterial && ((RawMaterial) other).type.equals(this.type)) {
-      this.setValue(getValue() + other.getValue());
-      return true;
-    }
-    return false;
+  public boolean isSameType(Resource other) {
+    return super.isSameType(other) &&
+        other instanceof RawMaterial &&
+        ((RawMaterial) other).getRType().equals(this.type);
   }
 }

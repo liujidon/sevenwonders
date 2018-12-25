@@ -4,7 +4,7 @@ import game.Player;
 
 public class NeighborGather extends Resource {
 
-  public enum TYPE {
+  public enum NType {
     RAW_COIN, // 1 coin per brown card built in the player�s city AND in the two neighboring cities
     MANUFACTURED_COIN, // 2 coins per gray card built in the player�s city AND in the two
     // neighboring cities
@@ -20,14 +20,14 @@ public class NeighborGather extends Resource {
     WAR_DEFEAT_VP, // 1 victory point for each defeat token present in the neighboring cities
   }
 
-  private TYPE type;
+  private NType type;
 
-  public NeighborGather(String name, TYPE type) {
-    super(name);
+  public NeighborGather(NType type) {
+    super(type.toString());
     this.type = type;
   }
 
-  public TYPE getTYPE() {
+  public NType getNType() {
     return type;
   }
 
@@ -38,5 +38,11 @@ public class NeighborGather extends Resource {
 
   public boolean add(Resource other) {
     return false;
+  }
+
+  public boolean isSameType(Resource other) {
+    return super.isSameType(other) &&
+        other instanceof NeighborGather &&
+        ((NeighborGather) other).getNType().equals(this.type);
   }
 }

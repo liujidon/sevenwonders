@@ -2,14 +2,11 @@ package resources;
 
 public class WarPoint extends Resource {
 
-  private float value;
-
-  public WarPoint(float value) {
-    super(String.format("Shield:%.2f", value));
-    this.value = value;
+  public WarPoint() {
+    super("WP:1", 1);
   }
 
-  public float getValue() {
-    return value;
+  public WarPoint(float value) {
+    super(String.format("Shield:%.2f", value), value);
   }
 }

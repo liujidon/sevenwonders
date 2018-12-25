@@ -21,20 +21,13 @@ public class ManufacturedGood extends Resource {
     setValue(value);
   }
 
-  public ManufacturedGood(String name, MType type) {
-    super(name);
-    this.type = type;
-  }
-
   public MType getMType() {
     return type;
   }
 
-  public boolean add(Resource other) {
-    if (other instanceof ManufacturedGood && ((ManufacturedGood) other).type.equals(this.type)) {
-      this.setValue(getValue() + other.getValue());
-      return true;
-    }
-    return false;
+  public boolean isSameType(Resource other) {
+    return super.isSameType(other) &&
+        other instanceof ManufacturedGood &&
+        ((ManufacturedGood) other).getMType().equals(this.type);
   }
 }
