@@ -50,4 +50,11 @@ public abstract class Resource {
     }
     return false;
   }
+
+  public abstract Resource copy();
+
+  @Override
+  public String toString() {
+    return getName() + ":" + getIntValue();
+  }
 }

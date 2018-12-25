@@ -1,4 +1,4 @@
-# sevenwonders
+# Seven Wonders
 
 
 # Rules and cards

@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableSet;
 import evaluator.ResourceEval;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import resources.ChoiceResource;
 import resources.Coin;
@@ -17,10 +18,12 @@ import resources.RawMaterial.RType;
 import resources.Resource;
 import resources.Science;
 import resources.Science.SType;
+import resources.ShieldPoint;
 import resources.VictoryPoint;
-import resources.WarPoint;
 
 public class ResourceTest {
+
+  final static Logger logger = Logger.getLogger(ResourceTest.class);
 
   @Test
   public void checkCanBuild() {
@@ -28,7 +31,7 @@ public class ResourceTest {
     resources.add(new Coin(1));
     resources.add(new Coin(3));
     resources.add(new VictoryPoint(10));
-    resources.add(new WarPoint(4));
+    resources.add(new ShieldPoint(4));
     resources.add(new ManufacturedGood(MType.Papyrus));
     resources.add(new ManufacturedGood(MType.Loom));
     resources.add(new ManufacturedGood(MType.Papyrus));
@@ -44,12 +47,15 @@ public class ResourceTest {
     assertTrue(missing.isEmpty());
 
     missing = ResourceEval.canBuild(ImmutableList.of(
-        new ManufacturedGood(MType.Glass)), resources);
-    assertFalse(missing.isEmpty());
-
-    missing = ResourceEval.canBuild(ImmutableList.of(
         new RawMaterial(RType.Ore, 4)), resources);
     assertTrue(missing.isEmpty());
+
+    missing = ResourceEval.canBuild(ImmutableList.of(
+        new ManufacturedGood(MType.Glass),
+        new Coin(9),
+        new RawMaterial(RType.Clay, 3)), resources);
+    assertFalse(missing.isEmpty());
+    logger.info("Missing: " + missing);
   }
 
   @Test
@@ -58,7 +64,7 @@ public class ResourceTest {
     resources.add(new Coin(5));
     resources.add(new Coin(8));
     resources.add(new VictoryPoint(10));
-    resources.add(new WarPoint(4));
+    resources.add(new ShieldPoint(4));
     resources.add(new VictoryPoint(2));
     resources.add(new ManufacturedGood(MType.Papyrus));
     resources.add(new ManufacturedGood(MType.Loom));
@@ -77,7 +83,7 @@ public class ResourceTest {
     Resource vp = ResourceEval.getResource(resources, new VictoryPoint());
     assertTrue("VP = 12", vp.getIntValue() == 12);
 
-    Resource wp = ResourceEval.getResource(resources, new WarPoint());
+    Resource wp = ResourceEval.getResource(resources, new ShieldPoint());
     assertTrue("WP = 4", wp.getIntValue() == 4);
 
     Resource pap = ResourceEval.getResource(resources, new ManufacturedGood(MType.Papyrus));
@@ -108,5 +114,22 @@ public class ResourceTest {
     assertFalse(m1.getName() + "!=" + m2.getName(), m2.isSameType(m1));
     assertTrue(m1.getName() + "==" + m2.getName(), m1.isSameType(m3));
     assertFalse(m1.getName() + "!=" + m4.getName(), m1.isSameType(m4));
+  }
+
+  @Test
+  public void resourceCopyTest() {
+    Resource r1 = new RawMaterial(RType.Ore);
+    Resource r2 = new RawMaterial(RType.Lumber, 2);
+    assertTrue(r1.getValue() == r1.copy().getValue());
+    assertTrue(r1.equals(r1.copy()));
+    assertTrue(r1.equals(r1.copy().copy()));
+    assertTrue(r2.equals(r2.copy()));
+
+    Resource m = new ManufacturedGood(MType.Papyrus, 40);
+    assertTrue(m.equals(m.copy()));
+
+    Resource s = new Science(SType.Tablet);
+    assertTrue(s.equals(s.copy()));
+
   }
 }

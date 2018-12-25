@@ -71,8 +71,8 @@ public class Player {
     resources.add(new Coin(3));
   }
 
-  public void setHand(List<Card> nexthand) {
-    this.hand = nexthand;
+  public void setHand(List<Card> nextHand) {
+    this.hand = nextHand;
   }
 
 }

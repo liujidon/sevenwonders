@@ -32,4 +32,8 @@ public class Trader extends Resource {
   public boolean add(Resource other) {
     return false;
   }
+
+  public Trader copy() {
+    return new Trader(type);
+  }
 }

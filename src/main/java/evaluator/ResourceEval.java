@@ -3,20 +3,22 @@ package evaluator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
-import resources.Coin;
 import resources.Resource;
 
 public class ResourceEval {
 
   /**
-   * Check if can be built
+   * Check if can be built given cost and available resources
    *
    * @return list of missing resources, empty list if can build
    */
   public static List<Resource> canBuild(List<Resource> cost, List<Resource> available) {
     List<Resource> missingResources = new ArrayList<>();
+
+    // group similar resources
     cost = simplifyResources(cost);
     available = simplifyResources(available);
+
     for (Resource c : cost) {
       Resource production = getResource(available, c);
       if (production == null) {
@@ -24,10 +26,14 @@ public class ResourceEval {
       } else {
         int valueMissing = c.getIntValue() - production.getIntValue();
         if (valueMissing > 0) {
-          missingResources.add(new Coin());
+          Resource missingResource = c.copy();
+          missingResource.setValue(valueMissing);
+          missingResources.add(missingResource);
         }
       }
     }
+
+    // check choice resources
     return missingResources;
   }
 
@@ -46,14 +52,15 @@ public class ResourceEval {
     List<Resource> shortResources = new ArrayList<>();
     for (Resource r : resources) {
       if (shortResources.isEmpty()) {
-        shortResources.add(r);
+        shortResources.add(r.copy());
         continue;
       }
       ListIterator<Resource> iterator = shortResources.listIterator();
       while (iterator.hasNext()) {
         Resource nr = iterator.next();
         if (!nr.add(r)) {
-          iterator.add(r);
+          iterator.add(r.copy());
+          break;
         }
       }
     }

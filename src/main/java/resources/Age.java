@@ -25,4 +25,8 @@ public class Age extends Resource {
   public boolean add(Resource other) {
     return false;
   }
+
+  public Age copy() {
+    return new Age(age);
+  }
 }

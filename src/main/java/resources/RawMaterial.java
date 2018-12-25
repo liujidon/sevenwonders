@@ -1,5 +1,7 @@
 package resources;
 
+import java.util.Objects;
+
 public class RawMaterial extends Resource {
 
   public enum RType {
@@ -31,4 +33,28 @@ public class RawMaterial extends Resource {
         other instanceof RawMaterial &&
         ((RawMaterial) other).getRType().equals(this.type);
   }
+
+  public RawMaterial copy() {
+    return new RawMaterial(type, getValue());
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) {
+      return true;
+    }
+    if (!(o instanceof RawMaterial)) {
+      return false;
+    }
+    RawMaterial oo = (RawMaterial) o;
+    return type.equals(oo.getRType()) &&
+        Objects.equals(getName(), oo.getName()) &&
+        Objects.equals(getValue(), oo.getValue());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getName(), getValue(), type);
+  }
+
 }

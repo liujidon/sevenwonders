@@ -20,8 +20,14 @@ public class ChoiceResource extends Resource {
     return resource;
   }
 
-  /** Can not be added */
+  /**
+   * Can not be added
+   */
   public boolean add(Resource other) {
     return false;
+  }
+
+  public ChoiceResource copy() {
+    return new ChoiceResource(getName(), resource);
   }
 }

@@ -1,5 +1,7 @@
 package resources;
 
+import java.util.Objects;
+
 public class Science extends Resource {
 
   public enum SType {
@@ -25,5 +27,27 @@ public class Science extends Resource {
       return true;
     }
     return false;
+  }
+
+  public Science copy() {
+    return new Science(type);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o == this) {
+      return true;
+    }
+    if (!(o instanceof Science)) {
+      return false;
+    }
+    Science oo = (Science) o;
+    return type.equals(oo.getSType()) &&
+        Objects.equals(getName(), oo.getName());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(type);
   }
 }

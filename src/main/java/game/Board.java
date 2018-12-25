@@ -10,7 +10,7 @@ public class Board {
 
   public Board(int playerNumber) {
     for (int i = 0; i < playerNumber; i++) {
-      players.add(new Player("", new Alexandria()));
+      players.add(new Player("p", new Alexandria()));
     }
   }
 }

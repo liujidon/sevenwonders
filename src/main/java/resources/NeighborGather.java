@@ -45,4 +45,8 @@ public class NeighborGather extends Resource {
         other instanceof NeighborGather &&
         ((NeighborGather) other).getNType().equals(this.type);
   }
+
+  public NeighborGather copy() {
+    return new NeighborGather(type);
+  }
 }

@@ -18,4 +18,8 @@ public class TechTree extends Resource {
   public boolean add(Resource other) {
     return false;
   }
+
+  public TechTree copy() {
+    return new TechTree(getName(), children);
+  }
 }

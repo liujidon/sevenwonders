@@ -70,4 +70,8 @@ public class CoinVP extends Resource {
         other instanceof CoinVP &&
         ((CoinVP) other).getVPType().equals(this.type);
   }
+
+  public CoinVP copy() {
+    return new CoinVP(type);
+  }
 }
