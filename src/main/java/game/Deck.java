@@ -2,6 +2,7 @@ package game;
 
 import cards.Card;
 import cards.Card.Age;
+import cards.GuildCard;
 import definitions.CardList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -16,13 +17,23 @@ public class Deck {
 
   public Deck(int players) {
     List<Card> cards = CardList.getCards(players);
+    Collections.shuffle(cards, new Random(System.nanoTime()));
+    int guildNeeded = players + 2;
+    int guildAdded = 0;
     for (Card card : cards) {
       if (card.age().equals(Age.I)) {
-        round1.add(card);
+        round1.addAll(card.getCardCopy(players));
       } else if (card.age().equals(Age.II)) {
-        round2.add(card);
+        round2.addAll(card.getCardCopy(players));
       } else if (card.age().equals(Age.III)) {
-        round3.add(card);
+        if (card instanceof GuildCard) {
+          if (guildAdded < guildNeeded) {
+            guildAdded++;
+            round3.add(card);
+          }
+        } else {
+          round3.addAll(card.getCardCopy(players));
+        }
       }
     }
     shuffleDeck();

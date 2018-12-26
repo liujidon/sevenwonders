@@ -20,7 +20,7 @@ public class Alexandria extends City {
                 Lists.newArrayList(new VictoryPoint(3))),
             new Wonder("Wonder 2",
                 Lists.newArrayList(new RawMaterial(RType.Ore, 2)),
-                Lists.newArrayList(new ChoiceResource("Wonder", ImmutableSet.of(
+                Lists.newArrayList(new ChoiceResource(ImmutableSet.of(
                     new RawMaterial(RType.Lumber, 1),
                     new RawMaterial(RType.Clay, 1),
                     new RawMaterial(RType.Ore, 1),

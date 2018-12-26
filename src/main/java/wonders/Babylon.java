@@ -20,7 +20,7 @@ public class Babylon extends City {
                 Lists.newArrayList(new VictoryPoint(3))),
             new Wonder("Wonder 2",
                 Lists.newArrayList(new RawMaterial(RType.Lumber, 3)),
-                Lists.newArrayList(new ChoiceResource("Wonder", ImmutableSet.of(
+                Lists.newArrayList(new ChoiceResource(ImmutableSet.of(
                     new Science(SType.Gear),
                     new Science(SType.Ruler),
                     new Science(SType.Tablet)
